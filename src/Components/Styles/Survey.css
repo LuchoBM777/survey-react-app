@@ -1,0 +1,137 @@
+.survey-page {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f9f9f9;
+    font-family: Poppins, sans-serif;
+}
+
+/* LOGO */
+.survey-page .logo {
+  position: absolute;
+  top: 24px;   /* arriba */
+  left: 24px; /*   izquierda */
+  width: 102px; /*ancho*/
+  height: 28.07px ; /*alto*/
+}
+
+.survey-box {
+    position: absolute;
+    width: 420px;
+    height: 700px;
+    top: 136px;
+    left: 485px;
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.survey-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #4b5563;
+}
+
+/* TEXTO FECHA */
+.survey-date-label {
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+    width: 45;
+    height: 24;
+}
+
+/* CONTENEDOR DEL INPUT */
+.survey-date {
+    display: flex;
+    width: 410px;
+    height: 40px;
+    top: 27px;
+}
+
+/* INPUT FECHA */
+.survey-date-input {
+    width: 410px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    padding: 0 12px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* EFECTO FOCUS */
+.survey-date-input:focus {
+    outline: none;
+    border-color: #fd6805;
+    box-shadow: 0 0 0 2px rgba(72, 2, 2, 0.2);
+}
+
+.survey-questions p {
+    font-family: poppins, sans-serif;
+    color: #6b7280;
+    font-size: 14px;
+    margin-top: 40px;
+    font-weight: 600;
+    line-height: 24px;
+    height: 24px;
+}
+
+.options {
+    color: #d1d5db;
+    display: flex;
+    gap: 40px;
+    width: 258px;
+    height: 20px;
+}
+
+.options label {
+    color: #374151;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.survey-btn {
+    position: absolute;
+    width: 117px;
+    height: 38px;
+    top: 663px;
+    left: 323px;
+    background: #ff6600;
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    opacity: 1;
+}
+
+
+.survey-btn:hover {
+    opacity: 0.9;
+}
+
+.close-btn {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 24px;
+  left: 416px;
+  border: none;
+  border-radius: 30%;
+  background: #c4c4c4;
+  color: #4b5563;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background: #e5e7eb;
+}
