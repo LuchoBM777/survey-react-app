@@ -1,8 +1,77 @@
 import "../Styles/Register.css";
+import { useState } from "react";
+import { register } from "../../services/authService";
 import { useNavigate } from "react-router-dom";
 
 export default function Register() {
+    const [form, setForm] = useState({
+        email: "",
+        user: "",
+        phone: "",
+        password: "",
+        confirm: ""
+    });
+
+    const [errors, setErrors] = useState({});
     const navigate = useNavigate();
+
+    const validate = () => {
+        const err = {};
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!form.email.trim())
+            err.email = "Correo obligatorio";
+        else if (!emailRegex.test(form.email))
+            err.email = "Correo inválido";
+
+        if (!form.user.trim())
+            err.user = "Usuario obligatorio";
+
+        if (!form.phone.trim())
+            err.phone = "Teléfono obligatorio";
+        else if (!/^\d{7,}$/.test(form.phone))
+            err.phone = "Mínimo 7 números";
+
+        if (!form.password)
+            err.password = "Contraseña obligatoria";
+        else if (form.password.length < 6)
+            err.password = "Mínimo 6 caracteres";
+
+        if (form.confirm !== form.password)
+            err.confirm = "No coinciden";
+
+        setErrors(err);
+        return Object.keys(err).length === 0;
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const res = await register(form);
+
+            console.log("RESPUESTA BACKEND:", res.data);
+
+            // Si llega un objeto con user o mail, asumimos éxito
+            if (res.data?.user || res.data?.mail) {
+                console.log("Registro exitoso"); // 👈 ahora sí sale
+
+                localStorage.setItem("user", JSON.stringify(res.data));
+                navigate("/login");
+            } else {
+                setErrors({ api: "Registro fallido" });
+            }
+
+        } catch (err) {
+            console.error("ERROR REGISTRO:", err.response?.data || err);
+            setErrors({
+                api: err.response?.data?.message || "Error en el servidor"
+            });
+        }
+    };
+
+
+
 
     return (
         <div className="auth register-screen">
@@ -25,21 +94,32 @@ export default function Register() {
 
                 <img src="/images/imagen1.png" className="person" />
 
-                <div className="right">
+                <form className="right" onSubmit={handleSubmit}>
                     <h3>Registro</h3>
 
-                    <input type="text" placeholder="Email" />
-                    <input type="text" placeholder="Nombre de usuario" />
-                    <input type="number" placeholder="Número de celular" />
-                    <input type="password" placeholder="Contraseña" />
-                    <input type="password" placeholder="Confirmar contraseña" />
+                    <input placeholder="Email"
+                        onChange={(e) => setForm({ ...form, email: e.target.value })} />
+                    {errors.email && <p className="error">{errors.email}</p>}
 
-                    <a className="forgot">Olvidé mi contraseña</a>
+                    <input placeholder="Nombre de usuario"
+                        onChange={(e) => setForm({ ...form, user: e.target.value })} />
+                    {errors.user && <p className="error">{errors.user}</p>}
 
-                    <button
-                        className="btn-login"
-                        onClick={() => navigate("/login")}
-                    >
+                    <input placeholder="Número de celular"
+                        onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+                    {errors.phone && <p className="error">{errors.phone}</p>}
+
+                    <input type="password" placeholder="Contraseña"
+                        onChange={(e) => setForm({ ...form, password: e.target.value })} />
+                    {errors.password && <p className="error">{errors.password}</p>}
+
+                    <input type="password" placeholder="Confirmar contraseña"
+                        onChange={(e) => setForm({ ...form, confirm: e.target.value })} />
+                    {errors.confirm && <p className="error">{errors.confirm}</p>}
+
+                    {errors.api && <p className="error">{errors.api}</p>}
+
+                    <button className="btn-login" type="submit">
                         Registrarte
                     </button>
 
@@ -50,7 +130,7 @@ export default function Register() {
                         <span className="apple"></span>
                         <span className="google">G</span>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     );

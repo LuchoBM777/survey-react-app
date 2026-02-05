@@ -177,3 +177,15 @@ html, body {
 .login-screen .fb { background:#1877f2; color:#fff; }
 .login-screen .apple { background:#000; color:#fff; }
 .login-screen .google { background:#fff; border:1px solid #ddd; }
+
+.error {
+  color: #dc2626;
+  font-size: 12px;
+  margin: 4px 0 8px;
+}
+
+.success {
+  color: #16a34a; /* green */
+  font-size: 12px;
+  margin: 4px 0 8px;
+}

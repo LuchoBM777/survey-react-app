@@ -1,68 +1,119 @@
-import { useNavigate } from "react-router-dom";
 import "../Styles/Survey.css";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { sendSurvey } from "../../services/surveyService";
 
 export default function Survey() {
+  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
 
-    const navigate = useNavigate();
+  const [date, setDate] = useState("");
+  const [answers, setAnswers] = useState({});
 
-    return (
-        <div className="survey-page">
+  // 🔥 NUEVO: si ya respondió → Done
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const saved = localStorage.getItem(`survey_${user?.user}`);
+    if (saved) {
+      navigate("/done");
+    }
+  }, [navigate]);
 
-            <div className="logo">
-                <img src="/images/logo.svg" alt="Logo" />
-            </div>
+  const handleSelect = (q, op) => {
+    setAnswers({ ...answers, [`Pregunta ${q}`]: op });
+  };
 
-            <div className="survey-box">
+  const handleSubmit = async () => {
+    if (!date || Object.keys(answers).length < 4) {
+      alert("Debes completar fecha y todas las preguntas");
+      return;
+    }
 
-                <button className="close-btn" onClick={() => navigate("/login")}>
-                    ×
-                </button>
+    const user = JSON.parse(localStorage.getItem("user"));
 
-                <h1 className="survey-title">Encuesta</h1>
+    const payload = {
+      user: user.user,
+      survey: {
+        fecha: date,
+        ...answers
+      }
+    };
 
-                <label className="survey-date-label">Fecha</label>
+    try {
+      const res = await sendSurvey(payload);
 
-                <div className="survey-date">
-                    <input className="survey-date-input" type="date" />
-                </div>
+      console.log("RESPUESTA BACKEND:", res.data);
 
-                <div className="survey-questions">
-                    <p>Pregunta 1</p>
-                    <div className="options">
-                        <label><input type="radio" name="q1" /> A</label>
-                        <label><input type="radio" name="q1" /> B</label>
-                        <label><input type="radio" name="q1" /> C</label>
-                        <label><input type="radio" name="q1" /> D</label>
-                    </div>
+      localStorage.setItem(`survey_${user.user}`, JSON.stringify(payload));
+      setShowModal(true);
+    } catch (err) {
+      console.log("ERROR ENCUESTA:", err.response?.data || err.message);
+      alert("Error enviando encuesta");
+    }
 
-                    <p>Pregunta 2</p>
-                    <div className="options">
-                        <label><input type="radio" name="q2" /> A</label>
-                        <label><input type="radio" name="q2" /> B</label>
-                        <label><input type="radio" name="q2" /> C</label>
-                        <label><input type="radio" name="q2" /> D</label>
-                    </div>
+  };
 
-                    <p>Pregunta 3</p>
-                    <div className="options">
-                        <label><input type="radio" name="q3" /> A</label>
-                        <label><input type="radio" name="q3" /> B</label>
-                        <label><input type="radio" name="q3" /> C</label>
-                        <label><input type="radio" name="q3" /> D</label>
-                    </div>
+  return (
+    <div className="survey-page">
+      <div className="logo">
+        <img src="/images/logo.svg" alt="Logo" />
+      </div>
 
-                    <p>Pregunta 4</p>
-                    <div className="options">
-                        <label><input type="radio" name="q4" /> A</label>
-                        <label><input type="radio" name="q4" /> B</label>
-                        <label><input type="radio" name="q4" /> C</label>
-                        <label><input type="radio" name="q4" /> D</label>
-                    </div>
-                </div>
+      <div className="survey-box">
+        <button className="close-btn" onClick={() => navigate("/login")}>
+          ×
+        </button>
 
-                <button className="survey-btn">Enviar</button>
+        <h1 className="survey-title">Encuesta</h1>
 
-            </div>
+        <label className="survey-date-label">Fecha</label>
+        <div className="survey-date">
+          <input
+            className="survey-date-input"
+            type="date"
+            onChange={(e) => setDate(e.target.value)}
+          />
         </div>
-    );
+
+        <div className="survey-questions">
+          {["1", "2", "3", "4"].map((q) => (
+            <div key={q} className="question-box">
+              <p>Pregunta {q}</p>
+              <div className="options">
+                {["A", "B", "C", "D"].map((op) => (
+                  <label key={op}>
+                    <input
+                      type="radio"
+                      name={`q${q}`}
+                      onChange={() => handleSelect(q, op)}
+                    />
+                    {op}
+                  </label>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <button className="survey-btn" onClick={handleSubmit}>
+          Enviar
+        </button>
+
+        {showModal && (
+          <div className="modal-overlay">
+            <div className="modal-box">
+              <div className="modal-icon">✔</div>
+              <h2>Tus respuestas se han guardado de manera correcta</h2>
+              <button
+                className="modal-btn"
+                onClick={() => navigate("/done")}
+              >
+                Terminar
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
