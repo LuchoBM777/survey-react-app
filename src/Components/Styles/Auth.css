@@ -191,6 +191,13 @@ body {
   gap: 18px;
 }
 
+.socials span img {
+  width: 24px;
+  height: 24px;
+  display: block;
+  margin: auto;
+}
+
 .login-screen .socials span {
   margin-top: 50px;
   width: 42px;

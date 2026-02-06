@@ -8,6 +8,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // estado para mostrar/ocultar contraseña
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -92,7 +93,6 @@ export default function Login() {
           </button>
         </p>
 
-
         <img src="/images/imagen1.png" className="person" />
 
         <form className="right" onSubmit={handleSubmit}>
@@ -106,14 +106,31 @@ export default function Login() {
           />
           {errors.emailOrUser && <p className="error">{errors.emailOrUser}</p>}
 
-          <div className="password-box">
+          <div className="password-box" style={{ position: "relative" }}>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"} // alterna el tipo
               placeholder="Contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              style={{ paddingRight: "30px" }} // espacio para el icono
             />
-            <i className="eye">👁</i>
+            <i
+              className="eye"
+              onClick={() => setShowPassword(!showPassword)}
+              style={{
+                cursor: "pointer",
+                position: "absolute",
+                right: "8px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                userSelect: "none",
+                fontSize: "18px",
+              }}
+              aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+              role="button"
+            >
+              {showPassword ? "🙈" : "👁"}
+            </i>
           </div>
 
           {errors.password && <p className="error">{errors.password}</p>}
@@ -129,9 +146,15 @@ export default function Login() {
           <p className="continue">o continúa con</p>
 
           <div className="socials">
-            <span className="fb">f</span>
-            <span className="apple"></span>
-            <span className="google">G</span>
+            <span className="fb">
+              <img src="/images/fb-icon.svg" alt="Facebook" style={{width:"20px", height:"20px"}} />
+            </span>
+            <span className="apple">
+              <img src="/images/apple-icon.svg" alt="Apple" style={{width:"20px", height:"20px"}} />
+            </span>
+            <span className="google">
+              <img src="/images/google-icon.svg" alt="Google" style={{width:"20px", height:"20px"}} />
+            </span>
           </div>
         </form>
       </div>

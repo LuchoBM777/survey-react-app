@@ -148,9 +148,15 @@ export default function Register() {
                     <p className="continue">o continúa con</p>
 
                     <div className="socials">
-                        <span className="fb">f</span>
-                        <span className="apple"></span>
-                        <span className="google">G</span>
+                        <span className="fb">
+                            <img src="/images/fb-icon.svg" alt="Facebook" style={{ width: "20px", height: "20px" }} />
+                        </span>
+                        <span className="apple">
+                            <img src="/images/apple-icon.svg" alt="Apple" style={{ width: "20px", height: "20px" }} />
+                        </span>
+                        <span className="google">
+                            <img src="/images/google-icon.svg" alt="Google" style={{ width: "20px", height: "20px" }} />
+                        </span>
                     </div>
                 </form>
             </div>
