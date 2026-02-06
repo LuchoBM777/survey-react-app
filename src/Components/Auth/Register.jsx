@@ -47,20 +47,23 @@ export default function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (!validate()) return;  // <-- Aquí se llama a validate antes de enviar
+
         try {
             const res = await register(form);
 
-            console.log("RESPUESTA BACKEND:", res.data);
+            const fixedResponse = {
+                message: "Registro exitoso",
+                data: res.data
+            };
 
-            // Si llega un objeto con user o mail, asumimos éxito
-            if (res.data?.user || res.data?.mail) {
-                console.log("Registro exitoso"); // 👈 ahora sí sale
+            console.log("RESPUESTA BACKEND:", fixedResponse);
 
-                localStorage.setItem("user", JSON.stringify(res.data));
-                navigate("/login");
-            } else {
-                setErrors({ api: "Registro fallido" });
-            }
+            localStorage.setItem("user", JSON.stringify(fixedResponse.data));
+
+            navigate("/login", {
+                state: { message: fixedResponse.message }
+            });
 
         } catch (err) {
             console.error("ERROR REGISTRO:", err.response?.data || err);
@@ -69,9 +72,6 @@ export default function Register() {
             });
         }
     };
-
-
-
 
     return (
         <div className="auth register-screen">
@@ -97,24 +97,41 @@ export default function Register() {
                 <form className="right" onSubmit={handleSubmit}>
                     <h3>Registro</h3>
 
-                    <input placeholder="Email"
-                        onChange={(e) => setForm({ ...form, email: e.target.value })} />
+                    <input
+                        placeholder="Email"
+                        value={form.email}
+                        onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    />
                     {errors.email && <p className="error">{errors.email}</p>}
 
-                    <input placeholder="Nombre de usuario"
-                        onChange={(e) => setForm({ ...form, user: e.target.value })} />
+                    <input
+                        placeholder="Nombre de usuario"
+                        value={form.user}
+                        onChange={(e) => setForm({ ...form, user: e.target.value })}
+                    />
                     {errors.user && <p className="error">{errors.user}</p>}
 
-                    <input placeholder="Número de celular"
-                        onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+                    <input
+                        placeholder="Número de celular"
+                        value={form.phone}
+                        onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                    />
                     {errors.phone && <p className="error">{errors.phone}</p>}
 
-                    <input type="password" placeholder="Contraseña"
-                        onChange={(e) => setForm({ ...form, password: e.target.value })} />
+                    <input
+                        type="password"
+                        placeholder="Contraseña"
+                        value={form.password}
+                        onChange={(e) => setForm({ ...form, password: e.target.value })}
+                    />
                     {errors.password && <p className="error">{errors.password}</p>}
 
-                    <input type="password" placeholder="Confirmar contraseña"
-                        onChange={(e) => setForm({ ...form, confirm: e.target.value })} />
+                    <input
+                        type="password"
+                        placeholder="Confirmar contraseña"
+                        value={form.confirm}
+                        onChange={(e) => setForm({ ...form, confirm: e.target.value })}
+                    />
                     {errors.confirm && <p className="error">{errors.confirm}</p>}
 
                     {errors.api && <p className="error">{errors.api}</p>}
