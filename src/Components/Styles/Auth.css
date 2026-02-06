@@ -191,55 +191,84 @@ html, body {
 }
 
 
-@media (max-width: 600px) {
-  .login-wrapper {
-    flex-direction: column;
-    max-width: 100%;
-    border-radius: 0;
-    box-shadow: none;
-  }
-
-  .left, .right {
-    padding: 20px;
-    width: 100%;
-  }
-
-  .title {
-    font-size: 2rem;
-  }
-
-  input {
-    font-size: 1.1rem;
-  }
-
-  .btn-login {
-    padding: 14px;
-    font-size: 1.1rem;
-  }
-
-  .person {
+@media (max-width: 768px) {
+  .login-screen.login-page {
+    height: auto;
+    padding: 20px 10px;
     display: block;
-    width: 100%;
-    max-height: 200px;
-    margin: 20px auto 0;
+    overflow-x: hidden; /* evita scroll horizontal */
   }
 
-  .register {
-    font-size: 0.9rem;
+  .login-screen .login-wrapper {
+    display: block;
+    gap: 0;
+  }
+
+  /* Elimina posiciones absolutas para todos estos elementos */
+  .login-screen .left,
+  .login-screen .right,
+  .login-screen .person,
+  .login-screen .logo,
+  .login-screen .register {
+    position: static !important;
+    width: 100% !important;
+    max-width: 400px;
+    margin: 10px auto;
+    height: auto !important;
     text-align: center;
   }
 
-  .socials {
-    gap: 15px;
+  /* Ajustes específicos para textos */
+  .login-screen .left h1 {
+    font-size: 32px;
   }
 
-  .socials span {
+  .login-screen .left h2 {
+    font-size: 22px;
+  }
+
+  /* Formularios y botones ocupan 100% ancho */
+  .login-screen .right h3 {
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+
+  .login-screen .right input {
+    width: 100% !important;
+    height: 50px;
+    font-size: 16px;
+  }
+
+  .login-screen .btn-login {
+    width: 100% !important;
+    height: 50px;
+    font-size: 18px;
+    box-shadow: none;
+  }
+
+  /* Persona (imagen) ajustada */
+  .login-screen .person {
+    width: 80%;
+    max-width: 300px;
+    height: auto;
+  }
+
+  /* Registro y redes sociales también adaptados */
+  .login-screen .register {
+    width: 100% !important;
+    max-width: 400px;
+    margin: 10px auto 30px auto;
+  }
+
+  .login-screen .socials {
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .login-screen .socials span {
     width: 36px;
     height: 36px;
-    font-size: 1.2rem;
-  }
-
-  .password-box .eye {
-    right: 10px;
+    font-size: 18px;
+    margin-top: 30px;
   }
 }
