@@ -1,224 +1,215 @@
-.survey-page {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #f9f9f9;
-    font-family: Poppins, sans-serif;
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background: #f9f9f9 !important;
+  font-family: Poppins, sans-serif;
 }
 
-/* LOGO */
+.survey-page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
 .survey-page .logo {
   position: absolute;
-  top: 24px;   /* arriba */
-  left: 24px; /*   izquierda */
-  width: 102px; /*ancho*/
-  height: 28.07px ; /*alto*/
+  top: 24px;
+  left: 24px;
+  width: 102px;
+  height: 28.07px;
 }
 
 .survey-box {
-    position: absolute;
-    width: 420px;
-    height: 700px;
-    top: 136px;
-    left: 485px;
-    background: #FFFFFF;
-    border-radius: 16px;
-    padding: 32px;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+  width: 400px;
+  max-width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  padding: 30px 40px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.survey-box .close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #888;
 }
 
 .survey-title {
-    font-size: 24px;
-    font-weight: 700;
-    color: #4b5563;
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
 }
 
-/* TEXTO FECHA */
 .survey-date-label {
-    color: #374151;
-    font-size: 14px;
-    font-weight: 600;
-    width: 45;
-    height: 24;
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #555;
 }
 
-/* CONTENEDOR DEL INPUT */
 .survey-date {
-    display: flex;
-    width: 410px;
-    height: 40px;
-    top: 27px;
+  margin-bottom: 25px;
 }
 
-/* INPUT FECHA */
 .survey-date-input {
-    width: 410px;
-    height: 40px;
-    border-radius: 10px;
-    border: 1px solid #d1d5db;
-    padding: 0 12px;
-    font-size: 14px;
-    cursor: pointer;
+  width: 100%;
+  height: 45px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 0 15px;
+  font-size: 16px;
+  box-sizing: border-box;
 }
 
-/* EFECTO FOCUS */
-.survey-date-input:focus {
-    outline: none;
-    border-color: #fd6805;
-    box-shadow: 0 0 0 2px rgba(72, 2, 2, 0.2);
+.survey-questions {
+  margin-bottom: 30px;
 }
 
-.survey-questions p {
-    font-family: poppins, sans-serif;
-    color: #6b7280;
-    font-size: 14px;
-    margin-top: 40px;
-    font-weight: 600;
-    line-height: 24px;
-    height: 24px;
+.question-box {
+  margin-bottom: 20px;
 }
 
-.options {
-    color: #d1d5db;
-    display: flex;
-    gap: 40px;
-    width: 258px;
-    height: 20px;
+.question-box p {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #444;
 }
 
 .options label {
-    color: #374151;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
+  margin-right: 15px;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+  color: #555;
 }
 
-.survey-btn {
-    position: absolute;
-    width: 117px;
-    height: 38px;
-    top: 663px;
-    left: 323px;
-    background: #ff6600;
-    color: #fff;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    opacity: 1;
-}
-
-
-.survey-btn:hover {
-    opacity: 0.9;
-}
-
-.close-btn {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  top: 24px;
-  left: 416px;
-  border: none;
-  border-radius: 30%;
-  background: #c4c4c4;
-  color: #4b5563;
-  font-weight: bold;
+.options input[type="radio"] {
+  margin-right: 6px;
   cursor: pointer;
 }
 
-.close-btn:hover {
-  background: #e5e7eb;
+.survey-btn {
+  width: 100%;
+  height: 50px;
+  background: #ff6600;
+  border: none;
+  border-radius: 9px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0px 10px 25px rgba(255, 122, 0, 0.4);
+  transition: background-color 0.3s ease;
+}
+
+.survey-btn:hover {
+  background: #e05500;
 }
 
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.4);
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 1000;
 }
 
 .modal-box {
   background: white;
-  padding: 40px;
   border-radius: 12px;
+  padding: 30px 40px;
+  max-width: 400px;
   text-align: center;
-  width: 350px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
 
 .modal-icon {
-  width: 50px;
-  height: 50px;
-  margin: auto;
-  border-radius: 50%;
-  background: #b7e4c7;
-  color: #1b4332;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  margin-bottom: 15px;
+  font-size: 48px;
+  color: #16a34a;
+  margin-bottom: 20px;
 }
 
 .modal-btn {
-  margin-top: 20px;
-  background: orange;
+  margin-top: 25px;
+  width: 100%;
+  height: 45px;
+  background: #ff6600;
   border: none;
-  padding: 10px 20px;
-  color: white;
-  border-radius: 6px;
+  border-radius: 9px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
   cursor: pointer;
+  box-shadow: 0px 10px 25px rgba(255, 122, 0, 0.4);
+  transition: background-color 0.3s ease;
 }
 
+.modal-btn:hover {
+  background: #e05500;
+}
+
+
+/* RESPONSIVE */
 
 @media (max-width: 768px) {
   .survey-page {
     height: auto;
-    padding: 20px 10px;
+    padding: 20px 10px 40px;
     display: block;
     overflow-x: hidden;
-    /* evita scroll horizontal */
   }
 
   .survey-box {
     width: 100%;
-    max-width: 100vw;
-    box-sizing: border-box;
-    padding: 10px;
+    max-width: 400px;
+    padding: 20px 20px 30px;
+    margin: 60px auto 0;
   }
 
-  /* Si tienes imágenes o elementos muy grandes, ocultarlos o ajustar */
-  .person {
-    display: none;
+  .survey-title {
+    font-size: 28px;
+    margin-bottom: 18px;
   }
 
-  /* Ajusta inputs y botones para que no se desborden */
-  input, button {
-    max-width: 100%;
-    box-sizing: border-box;
+  .survey-btn {
+    height: 45px;
+    font-size: 16px;
   }
 
-  /* Ajusta layout de preguntas para que se apilen verticalmente */
-  .survey-questions {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  .modal-box {
+    width: 90%;
+    max-width: 350px;
+    padding: 20px 25px;
   }
 
-  .options label {
-    display: inline-block;
-    margin-right: 10px;
+  .modal-icon {
+    font-size: 40px;
+  }
+
+  .modal-btn {
+    height: 40px;
+    font-size: 14px;
   }
 }
