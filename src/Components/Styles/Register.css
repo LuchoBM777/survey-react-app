@@ -203,10 +203,14 @@ html, body {
     gap: 0;
   }
 
+  .register span {
+  cursor: pointer;
+  user-select: none;
+}
+
   .register-screen .left,
   .register-screen .right,
   .register-screen .login,
-  .register-screen .person,
   .register-screen .logo {
     position: static !important;
     width: 100% !important;
@@ -230,9 +234,7 @@ html, body {
   }
 
   .register-screen .person {
-    width: 80%;
-    max-width: 300px;
-    height: auto;
+    display: none;
   }
 
   .register-screen .right {

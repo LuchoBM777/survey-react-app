@@ -184,27 +184,39 @@
 
 
 @media (max-width: 600px) {
+  .survey-page {
+    padding: 10px;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
   .survey-box {
-    padding: 20px;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    padding: 10px;
+  }
+
+  /* Si tienes imágenes o elementos muy grandes, ocultarlos o ajustar */
+  .person {
+    display: none;
+  }
+
+  /* Ajusta inputs y botones para que no se desborden */
+  input, button {
     max-width: 100%;
-    border-radius: 0;
+    box-sizing: border-box;
   }
 
-  .survey-title {
-    font-size: 1.5rem;
-  }
-
-  .survey-date-input {
-    font-size: 1rem;
-  }
-
-  .survey-btn {
-    font-size: 1rem;
-    padding: 14px;
+  /* Ajusta layout de preguntas para que se apilen verticalmente */
+  .survey-questions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
   }
 
   .options label {
-    margin-right: 12px;
-    font-size: 0.9rem;
+    display: inline-block;
+    margin-right: 10px;
   }
 }
