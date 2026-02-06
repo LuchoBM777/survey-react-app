@@ -203,11 +203,6 @@ html, body {
     gap: 0;
   }
 
-  .register span {
-  cursor: pointer;
-  user-select: none;
-}
-
   .register-screen .left,
   .register-screen .right,
   .register-screen .login,

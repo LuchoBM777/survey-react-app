@@ -207,7 +207,6 @@ html, body {
   /* Elimina posiciones absolutas para todos estos elementos */
   .login-screen .left,
   .login-screen .right,
-  .login-screen .person,
   .login-screen .logo,
   .login-screen .register {
     position: static !important;
@@ -226,6 +225,12 @@ html, body {
   .login-screen .left h2 {
     font-size: 22px;
   }
+  
+  .login-screen .register span {
+  cursor: pointer;
+  user-select: none;
+}
+
 
   /* Formularios y botones ocupan 100% ancho */
   .login-screen .right h3 {
@@ -248,9 +253,7 @@ html, body {
 
   /* Persona (imagen) ajustada */
   .login-screen .person {
-    width: 80%;
-    max-width: 300px;
-    height: auto;
+    display: none;
   }
 
   /* Registro y redes sociales también adaptados */
