@@ -83,10 +83,15 @@ export default function Login() {
 
         <p className="register">
           Si aún no tienes una cuenta puedes{" "}
-          <span onClick={() => navigate("/register")}>
+          <button
+            type="button"
+            className="link-button"
+            onClick={() => navigate("/register")}
+          >
             Regístrate aquí!
-          </span>
+          </button>
         </p>
+
 
         <img src="/images/imagen1.png" className="person" />
 

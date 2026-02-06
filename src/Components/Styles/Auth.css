@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -12,7 +13,8 @@ html, body {
 
 .login-screen.login-page {
   position: relative;
-  width: 100vw;     /* ocupa toda la pantalla */
+  width: 100vw;
+  /* ocupa toda la pantalla */
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -48,10 +50,14 @@ html, body {
 /* LOGO */
 .login-screen .logo {
   position: absolute;
-  top: 24px;   /* arriba */
-  left: 24px; /*   izquierda */
-  width: 102px; /*ancho*/
-  height: 28.07px ; /*alto*/
+  top: 24px;
+  /* arriba */
+  left: 24px;
+  /*   izquierda */
+  width: 102px;
+  /*ancho*/
+  height: 28.07px;
+  /*alto*/
 }
 
 .login-screen .left h1 {
@@ -76,10 +82,18 @@ html, body {
   left: 179px;
 }
 
+/* Aquí agrego la clase para que el span sea un botón con estilo de link */
 .login-screen .register span {
   color: #ff7a00;
   font-weight: 600;
   cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  text-decoration: underline;
+  display: inline-block;
+  user-select: none;
 }
 
 .login-screen .person {
@@ -150,7 +164,8 @@ html, body {
 
 .login-screen .continue {
   display: block;
-  margin: 28px auto 0; /* centrado debajo */
+  margin: 28px auto 0;
+  /* centrado debajo */
   text-align: center;
   font-size: 14px;
   color: #b5b5b5;
@@ -174,9 +189,20 @@ html, body {
   cursor: pointer;
 }
 
-.login-screen .fb { background:#1877f2; color:#fff; }
-.login-screen .apple { background:#000; color:#fff; }
-.login-screen .google { background:#fff; border:1px solid #ddd; }
+.login-screen .fb {
+  background: #1877f2;
+  color: #fff;
+}
+
+.login-screen .apple {
+  background: #000;
+  color: #fff;
+}
+
+.login-screen .google {
+  background: #fff;
+  border: 1px solid #ddd;
+}
 
 .error {
   color: #dc2626;
@@ -185,7 +211,8 @@ html, body {
 }
 
 .success {
-  color: #16a34a; /* green */
+  color: #16a34a;
+  /* green */
   font-size: 12px;
   margin: 4px 0 8px;
 }
@@ -196,7 +223,8 @@ html, body {
     height: auto;
     padding: 20px 10px;
     display: block;
-    overflow-x: hidden; /* evita scroll horizontal */
+    overflow-x: hidden;
+    /* evita scroll horizontal */
   }
 
   .login-screen .login-wrapper {
@@ -225,11 +253,11 @@ html, body {
   .login-screen .left h2 {
     font-size: 22px;
   }
-  
+
   .login-screen .register span {
-  cursor: pointer;
-  user-select: none;
-}
+    cursor: pointer;
+    user-select: none;
+  }
 
 
   /* Formularios y botones ocupan 100% ancho */
