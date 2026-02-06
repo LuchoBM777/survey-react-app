@@ -87,10 +87,15 @@ export default function Register() {
 
                 <p className="login">
                     Si ya tienes una cuenta puedes{" "}
-                    <span onClick={() => navigate("/login")}>
+                    <button
+                        type="button"
+                        className="link-button"
+                        onClick={() => navigate("/login")}
+                    >
                         Iniciar sesión aquí!
-                    </span>
+                    </button>
                 </p>
+
 
                 <img src="/images/imagen1.png" className="person" />
 

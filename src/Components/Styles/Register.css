@@ -74,12 +74,21 @@ html, body {
   height: 54px;
   top: 480px;
   left: 179px;
+  text-align: center;
 }
 
-.register-screen .login span {
+.register-screen .login .link-button {
+  background: none;
+  border: none;
   color: #ff7a00;
   font-weight: 600;
   cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  text-decoration: underline;
+  display: inline;
+  user-select: none;
 }
 
 .register-screen .person {
@@ -268,4 +277,3 @@ html, body {
     margin-top: 30px;
   }
 }
-
